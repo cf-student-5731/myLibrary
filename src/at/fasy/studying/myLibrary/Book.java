@@ -7,8 +7,9 @@ public class Book {
 
     private final String title, author,isbn;
     private final int libNr, initialStock;
-    private int stock;
     private boolean availability;
+    private int stock;
+
 
     @Override
     public String toString() {
@@ -16,19 +17,19 @@ public class Book {
                 author + "#" +
                 isbn + "#" +
                 libNr + "#" +
-                initialStock + "#" +
+                availability + "#" +
                 stock + "#" +
-                availability;
+                initialStock;
     }
 
-    public Book(String title, String author, String isbn, int libNr, boolean availability, int stock){
+    public Book(String title, String author, String isbn, int libNr, boolean availability, int stock, int initialStock){
         this.title = title;
         this.author = author;
         this.isbn = isbn;
         this.libNr = libNr;
         this.availability = availability;
         this.stock = stock;
-        this.initialStock = stock;
+        this.initialStock = initialStock;
     }
 
     public String getTitle(){
@@ -88,7 +89,7 @@ public class Book {
 
     public static Book[] addBook(Book[] b, int libNr){
         String title, author,isbn;
-        int stock;
+        int stock, initialStock;
 
         ArrayList<Book> bl = new ArrayList<>(Arrays.asList(b));
 
@@ -100,12 +101,21 @@ public class Book {
         isbn = InputOutput.readString();
         System.out.print("Enter Stock: ");
         stock = InputOutput.readInt();
+        System.out.print("Enter max amount of this Book: ");
+        initialStock = InputOutput.readInt();
 
         while(stock <1 ){
             System.out.print("Enter a value higher than 0: ");
             stock = InputOutput.readInt();
         }
-        bl.add(new Book(title, author, isbn, libNr, true, stock));
+
+
+        while(initialStock < stock) {
+            System.out.print("Enter a value higher than " + (stock-1) + " :");
+            initialStock = InputOutput.readInt();
+        }
+
+        bl.add(new Book(title, author, isbn, libNr, true, stock, initialStock));
         return bl.toArray(b);
     }
 

@@ -1,21 +1,20 @@
 package at.fasy.studying.myLibrary;
 
-import java.io.IOException;
 
 public class MyLibrary {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
 
         int amountOfBooks = 5;
 
         Book[] b = new Book[amountOfBooks];
         InputOutput t = new InputOutput();
 
-        b[0] = new Book("Java in a Nutshell", "Benjamin J Evans, David Flanagan", "978-1449370824", 1, true, 3);
-        b[1] = new Book("Beginning Programming with Java For Dummies", "Barry Burd", "978-1119235538", 2, true, 2);
-        b[2] = new Book("Web Design with HTML, CSS, JavaScript and jQuery Set", "Jon Duckett", "978-1118907443", 3, true, 4);
-        b[3] = new Book("Überleben unter Arschlöchern", "Robert I Sutton", "978-3492057400", 4, true, 2);
-        b[4] = new Book("Database Systems: Design, Implementation, & Management", "Carlos Coronel, Steven Morris", "978-1337627900", 5, true, 1);
+        b[0] = new Book("Java in a Nutshell", "Benjamin J Evans, David Flanagan", "978-1449370824", 1, true, 3, 3);
+        b[1] = new Book("Beginning Programming with Java For Dummies", "Barry Burd", "978-1119235538", 2, true, 2, 2);
+        b[2] = new Book("Web Design with HTML, CSS, JavaScript and jQuery Set", "Jon Duckett", "978-1118907443", 3, true, 4, 4);
+        b[3] = new Book("Überleben unter Arschlöchern", "Robert I Sutton", "978-3492057400", 4, true, 2,2);
+        b[4] = new Book("Database Systems: Design, Implementation, & Management", "Carlos Coronel, Steven Morris", "978-1337627900", 5, true, 1, 1);
 
         String[] heading = {"TITLE", "AUTHOR", "ISBN", "INV. NR.", "AVAILABILITY", "STOCK"};
 
@@ -121,12 +120,23 @@ public class MyLibrary {
                     t.printMenu();
                 }
                 case 6 ->{
-                    InputOutput.saveToFile(b);
+                    try {
+                        InputOutput.saveToFile(b);
+                    }
+                    catch(Exception e){
+                        System.out.println("Could not write to file!");
+                    }
                     t.printMenu();
                 }
                 case 7 ->{
-                    b = InputOutput.loadFromFile();
-                    t.printTable(b, heading);
+                    try{
+                        b = InputOutput.loadFromFile();
+                        t.printTable(b, heading);
+                    }
+                    catch(Exception e){
+                        System.out.println("Could not read from file!");
+                    }
+
                     t.printMenu();
                 }
                 default -> {

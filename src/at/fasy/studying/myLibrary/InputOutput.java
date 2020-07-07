@@ -163,11 +163,7 @@ public class InputOutput {
         String line;
 
         while ((line = bufferedReader.readLine()) != null){
-//            System.out.println(line);
             String[] lineArray = line.split("#");
-//            for (String a : lineArray){
-//                System.out.println(a);
-//            }
             String title = lineArray[0];
             String author = lineArray[1];
             String isbn = lineArray[2];
@@ -178,7 +174,8 @@ public class InputOutput {
             }
 
             int stock = Integer.parseInt(lineArray[5]);
-            lines.add(new Book(title, author, isbn, libNr, availability, stock));
+            int initialStock = Integer.parseInt(lineArray[6]);
+            lines.add(new Book(title, author, isbn, libNr, availability, stock, initialStock));
 
         }
         bufferedReader.close();
