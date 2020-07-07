@@ -2,9 +2,9 @@ package at.fasy.studying.myLibrary;
 
 public class GetLengths {
 
-    public int getTitleLength(Book[] c){
+    public int getTitleLength(Book[] b){
         int length = 0;
-        for(Book k : c){
+        for(Book k : b){
             if (length < k.getTitle().length()){
                 length = k.getTitle().length();
             }

@@ -22,20 +22,28 @@ public class myLibrary {
         t.printTable(b, heading);
         t.printMenu();
         int menuInput1 = 1;
-        int menuInput2;
+        int menuInput2 = 0;
+        int j;
 
         while(menuInput1 != 0) {
             menuInput1 = in.nextInt();
             switch (menuInput1) {
                 case 1:
-                    System.out.println("Enter Inv. Number: ");
+                    System.out.print("Enter Inv. Number: ");
                     menuInput2 = in.nextInt();
-                    if (b[menuInput2 - 1].lendBook()){
+                    j = -1;
+                    for (Book i : b){
+                        j++;
+                        if (menuInput2 == i.getLibNr()){
+                            menuInput2 = j;
+                        }
+                    }
+                    if (b[menuInput2].lendBook()){
                         t.printTable(b, heading);
                     }
                     else{
                         t.printTable(b, heading);
-                        System.out.println(b[menuInput2 - 1].getTitle());
+                        System.out.println(b[menuInput2].getTitle());
                         System.out.println("Is not available");
                         System.out.println();
                     }
@@ -43,23 +51,38 @@ public class myLibrary {
                     break;
 
                 case 2:
-                System.out.println("Enter Inv. Number: ");
+                System.out.print("Enter Inv. Number: ");
                 menuInput2 = in.nextInt();
-                if(b[menuInput2 - 1].returnBook()){
+                    j = -1;
+                    for (Book i : b){
+                        j++;
+                        if (menuInput2 == i.getLibNr()){
+                            menuInput2 = j;
+                        }
+                    }
+                if(b[menuInput2].returnBook()){
                     t.printTable(b, heading);
                 }
                 else{
                     t.printTable(b, heading);
-                    System.out.println(b[menuInput2 - 1].getTitle());
+                    System.out.println(b[menuInput2].getTitle());
                     System.out.println("Cannot be returned because the stock is already full!");
                     System.out.println();
                 }
                     t.printMenu();
                 break;
-//            case 3:
-//                break;
-//            case 4:
-//                break;
+           case 3:
+               b = b[menuInput2 - 1].addBook(b);
+               t.printTable(b, heading);
+               t.printMenu();
+                break;
+            case 4:
+                System.out.print("Enter Inv. Number: ");
+                menuInput2 = in.nextInt();
+                b = b[menuInput2 - 1].deleteBook(b, menuInput2);
+                t.printTable(b, heading);
+                t.printMenu();
+                break;
 //            case 0:
 //                break;
                 default:

@@ -18,8 +18,8 @@ public class PrintTable {
         System.out.println("Menu:");
         System.out.print("1...lend Book | ");
         System.out.print("2...return Book | ");
-//        System.out.print("3...add Book | ");
-//        System.out.print("4...delete Book | ");
+        System.out.print("3...add Book | ");
+        System.out.print("4...delete Book | ");
         System.out.print("0...exit");
         System.out.println();
         System.out.print("Your choice: ");
