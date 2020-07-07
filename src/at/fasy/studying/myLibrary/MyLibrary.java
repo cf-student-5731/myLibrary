@@ -1,7 +1,7 @@
 package at.fasy.studying.myLibrary;
 import java.util.Scanner;
 
-public class myLibrary {
+public class MyLibrary {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -39,7 +39,7 @@ public class myLibrary {
                 case 1:
                     System.out.print("Enter Inv. Number: ");
                     try {
-                    menuInput2 = in.nextInt();
+                        menuInput2 = in.nextInt();
                         j = -1;
                         for (Book i : b) {
                             j++;
@@ -87,21 +87,21 @@ public class myLibrary {
                         System.out.println("Invalid Input!");
                         in.nextLine();
                     }
-                        t.printMenu();
+                    t.printMenu();
                     break;
 
                 case 3:
-                   try {
-                       b = b[0].addBook(b);
-                       t.printTable(b, heading);
-                   }
-                   catch(Exception e){
-                       System.out.println("Invalid Input!");
-                       in.nextLine();
-                   }
-                   t.printMenu();
+                    try {
+                        b = b[0].addBook(b);
+                        t.printTable(b, heading);
+                    }
+                    catch(Exception e){
+                        System.out.println("Invalid Input!");
+                        in.nextLine();
+                    }
+                    t.printMenu();
                     break;
-                    case 4:
+                case 4:
                     System.out.print("Enter Inv. Number: ");
                     try{
                         menuInput2 = in.nextInt();
