@@ -92,8 +92,11 @@ public class Book {
         System.out.print("Enter Stock: ");
         stock = in.nextInt();
 
+        while(stock <1 ){
+            System.out.print("Enter a value higher than 0: ");
+            stock = in.nextInt();
+        }
         bl.add(new Book(title, author, isbn, libNr, true, stock));
-
         return bl.toArray(b);
     }
 
