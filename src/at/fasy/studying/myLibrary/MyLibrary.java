@@ -21,25 +21,26 @@ public class MyLibrary {
 
         t.printTable(b, heading);
         t.printMenu();
-        int menuInput1;
-        int menuInput2;
-        int j;
+        int menuInput1, menuInput2, j;
+        int maxLibNr = b.length;
         boolean exit = false;
+        boolean found;
+
 
         while(!exit) {
+            found = false;
             try{
-                menuInput1 = in.nextInt();
+                menuInput1 = PrintTable.readInt();
             }
             catch (Exception e){
                 menuInput1 = 99;
-                in.nextLine();
             }
 
             switch (menuInput1) {
                 case 1:
                     System.out.print("Enter Inv. Number: ");
                     try {
-                        menuInput2 = in.nextInt();
+                        menuInput2 = PrintTable.readInt();
                         j = -1;
                         for (Book i : b) {
                             j++;
@@ -57,8 +58,7 @@ public class MyLibrary {
                         }
                     }
                     catch(Exception e){
-                        System.out.println("Invalid Input!");
-                        in.nextLine();
+                        System.out.println("Invalid Inv. Nr.");
                     }
                     t.printMenu();
                     break;
@@ -66,51 +66,56 @@ public class MyLibrary {
                 case 2:
                     System.out.print("Enter Inv. Number: ");
                     try {
-                        menuInput2 = in.nextInt();
+                        menuInput2 = PrintTable.readInt();
                         j = -1;
                         for (Book i : b) {
                             j++;
                             if (menuInput2 == i.getLibNr()) {
                                 menuInput2 = j;
+                                found = true;
                             }
                         }
-                        if (b[menuInput2].returnBook()) {
-                            t.printTable(b, heading);
-                        } else {
-                            t.printTable(b, heading);
-                            System.out.println(b[menuInput2].getTitle());
-                            System.out.println("Cannot be returned because the stock is already full!");
-                            System.out.println();
+                        if(found) {
+                            if (b[menuInput2].returnBook()) {
+                                t.printTable(b, heading);
+                            } else {
+                                System.out.println(b[menuInput2].getTitle());
+                                System.out.println("Cannot be returned because the stock is already full!");
+                                System.out.println();
+                            }
+                        }
+                        else{
+                            System.out.println("Invalid Inv. Nr.");
+                            t.printMenu();
+                            break;
                         }
                     }
                     catch(Exception e){
-                        System.out.println("Invalid Input!");
-                        in.nextLine();
+                        System.out.println("Invalid Inv. Nr.");
                     }
                     t.printMenu();
                     break;
 
                 case 3:
                     try {
-                        b = b[0].addBook(b);
+                        maxLibNr++;
+                        b = Book.addBook(b, maxLibNr);
                         t.printTable(b, heading);
                     }
                     catch(Exception e){
                         System.out.println("Invalid Input!");
-                        in.nextLine();
                     }
                     t.printMenu();
                     break;
                 case 4:
                     System.out.print("Enter Inv. Number: ");
                     try{
-                        menuInput2 = in.nextInt();
-                        b = b[menuInput2 - 1].deleteBook(b, menuInput2);
+                        menuInput2 = PrintTable.readInt();
+                        b = Book.deleteBook(b, menuInput2);
                         t.printTable(b, heading);
                     }
                     catch(Exception e){
-                        System.out.println("Invalid Input!");
-                        in.nextLine();
+                        System.out.println("Invalid Inv. Nr.");
                     }
                     t.printMenu();
                     break;

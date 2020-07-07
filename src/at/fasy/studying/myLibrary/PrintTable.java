@@ -1,5 +1,6 @@
 package at.fasy.studying.myLibrary;
 
+import java.util.Scanner;
 
 public class PrintTable {
 
@@ -129,6 +130,10 @@ public class PrintTable {
         printDashLine(TitleMaxLength, AuthorMaxLength, IsbnMaxLength, LibNrMaxLength, LibAvailabilityMaxLength, StockMaxLength);
 
         System.out.println();
+    }
 
+    public static int readInt(){
+        Scanner in = new Scanner(System.in);
+        return in.nextInt();
     }
 }

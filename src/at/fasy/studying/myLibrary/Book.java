@@ -73,15 +73,13 @@ public class Book {
         else{
             return false;
         }
-
-
     }
 
 
-    public Book[] addBook(Book[] b){
+    public static Book[] addBook(Book[] b, int libNr){
         Scanner in = new Scanner(System.in);
         String title, author,isbn;
-        int libNr, stock;
+        int stock;
 
         ArrayList<Book> bl = new ArrayList<Book>(Arrays.asList(b));
 
@@ -91,7 +89,6 @@ public class Book {
         author = in.nextLine();
         System.out.print("Enter ISBN: ");
         isbn = in.nextLine();
-        libNr = (b[b.length-1].getLibNr()+1);
         System.out.print("Enter Stock: ");
         stock = in.nextInt();
 
@@ -100,7 +97,7 @@ public class Book {
         return bl.toArray(b);
     }
 
-    public Book[] deleteBook(Book[] b, int item){
+    public static Book[] deleteBook(Book[] b, int item){
         ArrayList<Book> bl = new ArrayList<Book>(Arrays.asList(b));
         int j = -1;
         for (Book i : b){
