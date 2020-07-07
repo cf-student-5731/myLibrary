@@ -2,8 +2,9 @@ package at.fasy.studying.myLibrary;
 
 public class Book {
 
-    private String title, author,isbn;
-    private int libNr, stock, initialStock;
+    private final String title, author,isbn;
+    private final int libNr, initialStock;
+    private int stock;
     private boolean availability;
 
     public Book(String title, String author, String isbn, int libNr, boolean availability, int stock){
