@@ -20,6 +20,7 @@ public class PrintTable {
         System.out.print("2...return Book | ");
         System.out.print("3...add Book | ");
         System.out.print("4...delete Book | ");
+        System.out.print("5...print Table | ");
         System.out.print("0...exit");
         System.out.println();
         System.out.print("Your choice: ");

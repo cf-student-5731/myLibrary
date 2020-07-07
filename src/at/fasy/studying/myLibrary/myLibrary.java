@@ -21,73 +21,113 @@ public class myLibrary {
 
         t.printTable(b, heading);
         t.printMenu();
-        int menuInput1 = 1;
-        int menuInput2 = 0;
+        int menuInput1;
+        int menuInput2;
         int j;
+        boolean exit = false;
 
-        while(menuInput1 != 0) {
-            menuInput1 = in.nextInt();
+        while(!exit) {
+            try{
+                menuInput1 = in.nextInt();
+            }
+            catch (Exception e){
+                menuInput1 = 99;
+                in.nextLine();
+            }
+
             switch (menuInput1) {
                 case 1:
                     System.out.print("Enter Inv. Number: ");
+                    try {
                     menuInput2 = in.nextInt();
-                    j = -1;
-                    for (Book i : b){
-                        j++;
-                        if (menuInput2 == i.getLibNr()){
-                            menuInput2 = j;
+                        j = -1;
+                        for (Book i : b) {
+                            j++;
+                            if (menuInput2 == i.getLibNr()) {
+                                menuInput2 = j;
+                            }
+                        }
+                        if (b[menuInput2].lendBook()) {
+                            t.printTable(b, heading);
+                        } else {
+                            t.printTable(b, heading);
+                            System.out.println(b[menuInput2].getTitle());
+                            System.out.println("Is not available");
+                            System.out.println();
                         }
                     }
-                    if (b[menuInput2].lendBook()){
-                        t.printTable(b, heading);
-                    }
-                    else{
-                        t.printTable(b, heading);
-                        System.out.println(b[menuInput2].getTitle());
-                        System.out.println("Is not available");
-                        System.out.println();
+                    catch(Exception e){
+                        System.out.println("Invalid Input!");
+                        in.nextLine();
                     }
                     t.printMenu();
                     break;
 
                 case 2:
-                System.out.print("Enter Inv. Number: ");
-                menuInput2 = in.nextInt();
-                    j = -1;
-                    for (Book i : b){
-                        j++;
-                        if (menuInput2 == i.getLibNr()){
-                            menuInput2 = j;
+                    System.out.print("Enter Inv. Number: ");
+                    try {
+                        menuInput2 = in.nextInt();
+                        j = -1;
+                        for (Book i : b) {
+                            j++;
+                            if (menuInput2 == i.getLibNr()) {
+                                menuInput2 = j;
+                            }
+                        }
+                        if (b[menuInput2].returnBook()) {
+                            t.printTable(b, heading);
+                        } else {
+                            t.printTable(b, heading);
+                            System.out.println(b[menuInput2].getTitle());
+                            System.out.println("Cannot be returned because the stock is already full!");
+                            System.out.println();
                         }
                     }
-                if(b[menuInput2].returnBook()){
-                    t.printTable(b, heading);
-                }
-                else{
-                    t.printTable(b, heading);
-                    System.out.println(b[menuInput2].getTitle());
-                    System.out.println("Cannot be returned because the stock is already full!");
-                    System.out.println();
-                }
-                    t.printMenu();
-                break;
-           case 3:
-               b = b[menuInput2 - 1].addBook(b);
-               t.printTable(b, heading);
-               t.printMenu();
-                break;
-            case 4:
-                System.out.print("Enter Inv. Number: ");
-                menuInput2 = in.nextInt();
-                b = b[menuInput2 - 1].deleteBook(b, menuInput2);
-                t.printTable(b, heading);
-                t.printMenu();
-                break;
-//            case 0:
-//                break;
-                default:
+                    catch(Exception e){
+                        System.out.println("Invalid Input!");
+                        in.nextLine();
+                    }
+                        t.printMenu();
                     break;
 
+                case 3:
+                   try {
+                       b = b[0].addBook(b);
+                       t.printTable(b, heading);
+                   }
+                   catch(Exception e){
+                       System.out.println("Invalid Input!");
+                       in.nextLine();
+                   }
+                   t.printMenu();
+                    break;
+                    case 4:
+                    System.out.print("Enter Inv. Number: ");
+                    try{
+                        menuInput2 = in.nextInt();
+                        b = b[menuInput2 - 1].deleteBook(b, menuInput2);
+                        t.printTable(b, heading);
+                    }
+                    catch(Exception e){
+                        System.out.println("Invalid Input!");
+                        in.nextLine();
+                    }
+                    t.printMenu();
+                    break;
+                case 0:
+                    exit = true;
+                    System.out.println("Bye!");
+                    break;
+
+                case 5:
+                    t.printTable(b, heading);
+                    t.printMenu();
+                    break;
+
+                default:
+                    System.out.println("Invalid Input!");
+                    t.printMenu();
+                    break;
             }
         }
     }
