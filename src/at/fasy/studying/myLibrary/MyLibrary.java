@@ -1,15 +1,13 @@
 package at.fasy.studying.myLibrary;
-import java.util.Scanner;
 
 public class MyLibrary {
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
 
         int amountOfBooks = 5;
 
         Book[] b = new Book[amountOfBooks];
-        PrintTable t = new PrintTable();
+        InputOutput t = new InputOutput();
 
         b[0] = new Book("Java in a Nutshell", "Benjamin J Evans, David Flanagan", "978-1449370824", 1, true, 3);
         b[1] = new Book("Beginning Programming with Java For Dummies", "Barry Burd ", "978-1119235538", 2, true, 2);
@@ -30,7 +28,7 @@ public class MyLibrary {
         while(!exit) {
             found = false;
             try{
-                menuInput1 = PrintTable.readInt();
+                menuInput1 = InputOutput.readInt();
             }
             catch (Exception e){
                 menuInput1 = 99;
@@ -40,7 +38,7 @@ public class MyLibrary {
                 case 1:
                     System.out.print("Enter Inv. Number: ");
                     try {
-                        menuInput2 = PrintTable.readInt();
+                        menuInput2 = InputOutput.readInt();
                         j = -1;
                         for (Book i : b) {
                             j++;
@@ -66,7 +64,7 @@ public class MyLibrary {
                 case 2:
                     System.out.print("Enter Inv. Number: ");
                     try {
-                        menuInput2 = PrintTable.readInt();
+                        menuInput2 = InputOutput.readInt();
                         j = -1;
                         for (Book i : b) {
                             j++;
@@ -110,7 +108,7 @@ public class MyLibrary {
                 case 4:
                     System.out.print("Enter Inv. Number: ");
                     try{
-                        menuInput2 = PrintTable.readInt();
+                        menuInput2 = InputOutput.readInt();
                         b = Book.deleteBook(b, menuInput2);
                         t.printTable(b, heading);
                     }

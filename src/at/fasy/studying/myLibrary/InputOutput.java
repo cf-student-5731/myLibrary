@@ -2,7 +2,7 @@ package at.fasy.studying.myLibrary;
 
 import java.util.Scanner;
 
-public class PrintTable {
+public class InputOutput {
 
     public void fillRow (int offset, int length){
         for (int i=0; i<length-offset; i++)
@@ -135,5 +135,10 @@ public class PrintTable {
     public static int readInt(){
         Scanner in = new Scanner(System.in);
         return in.nextInt();
+    }
+
+    public static String readString(){
+        Scanner in = new Scanner(System.in);
+        return in.nextLine();
     }
 }

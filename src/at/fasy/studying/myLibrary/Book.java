@@ -2,7 +2,6 @@ package at.fasy.studying.myLibrary;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Book {
 
@@ -77,24 +76,23 @@ public class Book {
 
 
     public static Book[] addBook(Book[] b, int libNr){
-        Scanner in = new Scanner(System.in);
         String title, author,isbn;
         int stock;
 
         ArrayList<Book> bl = new ArrayList<Book>(Arrays.asList(b));
 
         System.out.print("Enter Title: ");
-        title = in.nextLine();
+        title = InputOutput.readString();
         System.out.print("Enter Author: ");
-        author = in.nextLine();
+        author = InputOutput.readString();
         System.out.print("Enter ISBN: ");
-        isbn = in.nextLine();
+        isbn = InputOutput.readString();
         System.out.print("Enter Stock: ");
-        stock = in.nextInt();
+        stock = InputOutput.readInt();
 
         while(stock <1 ){
             System.out.print("Enter a value higher than 0: ");
-            stock = in.nextInt();
+            stock = InputOutput.readInt();
         }
         bl.add(new Book(title, author, isbn, libNr, true, stock));
         return bl.toArray(b);
