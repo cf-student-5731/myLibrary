@@ -35,7 +35,7 @@ public class MyLibrary {
             }
 
             switch (menuInput1) {
-                case 1:
+                case 1 -> {
                     System.out.print("Enter Inv. Number: ");
                     try {
                         menuInput2 = InputOutput.readInt();
@@ -54,14 +54,12 @@ public class MyLibrary {
                             System.out.println("Is not available");
                             System.out.println();
                         }
-                    }
-                    catch(Exception e){
+                    } catch (Exception e) {
                         System.out.println("Invalid Inv. Nr.");
                     }
                     t.printMenu();
-                    break;
-
-                case 2:
+                }
+                case 2 -> {
                     System.out.print("Enter Inv. Number: ");
                     try {
                         menuInput2 = InputOutput.readInt();
@@ -73,7 +71,7 @@ public class MyLibrary {
                                 found = true;
                             }
                         }
-                        if(found) {
+                        if (found) {
                             if (b[menuInput2].returnBook()) {
                                 t.printTable(b, heading);
                             } else {
@@ -81,56 +79,49 @@ public class MyLibrary {
                                 System.out.println("Cannot be returned because the stock is already full!");
                                 System.out.println();
                             }
-                        }
-                        else{
+                        } else {
                             System.out.println("Invalid Inv. Nr.");
                             t.printMenu();
                             break;
                         }
-                    }
-                    catch(Exception e){
+                    } catch (Exception e) {
                         System.out.println("Invalid Inv. Nr.");
                     }
                     t.printMenu();
-                    break;
-
-                case 3:
+                }
+                case 3 -> {
                     try {
                         maxLibNr++;
                         b = Book.addBook(b, maxLibNr);
                         t.printTable(b, heading);
-                    }
-                    catch(Exception e){
+                    } catch (Exception e) {
                         System.out.println("Invalid Input!");
                     }
                     t.printMenu();
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     System.out.print("Enter Inv. Number: ");
-                    try{
+                    try {
                         menuInput2 = InputOutput.readInt();
                         b = Book.deleteBook(b, menuInput2);
                         t.printTable(b, heading);
-                    }
-                    catch(Exception e){
+                    } catch (Exception e) {
                         System.out.println("Invalid Inv. Nr.");
                     }
                     t.printMenu();
-                    break;
-                case 0:
+                }
+                case 0 -> {
                     exit = true;
                     System.out.println("Bye!");
-                    break;
-
-                case 5:
+                }
+                case 5 -> {
                     t.printTable(b, heading);
                     t.printMenu();
-                    break;
-
-                default:
+                }
+                default -> {
                     System.out.println("Invalid Input!");
                     t.printMenu();
-                    break;
+                }
             }
         }
     }
