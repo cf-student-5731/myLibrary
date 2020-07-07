@@ -10,6 +10,17 @@ public class Book {
     private int stock;
     private boolean availability;
 
+    @Override
+    public String toString() {
+        return  title + "#" +
+                author + "#" +
+                isbn + "#" +
+                libNr + "#" +
+                initialStock + "#" +
+                stock + "#" +
+                availability;
+    }
+
     public Book(String title, String author, String isbn, int libNr, boolean availability, int stock){
         this.title = title;
         this.author = author;
@@ -79,7 +90,7 @@ public class Book {
         String title, author,isbn;
         int stock;
 
-        ArrayList<Book> bl = new ArrayList<Book>(Arrays.asList(b));
+        ArrayList<Book> bl = new ArrayList<>(Arrays.asList(b));
 
         System.out.print("Enter Title: ");
         title = InputOutput.readString();
@@ -99,7 +110,7 @@ public class Book {
     }
 
     public static Book[] deleteBook(Book[] b, int item){
-        ArrayList<Book> bl = new ArrayList<Book>(Arrays.asList(b));
+        ArrayList<Book> bl = new ArrayList<>(Arrays.asList(b));
         int j = -1;
         for (Book i : b){
             j++;
@@ -108,7 +119,6 @@ public class Book {
             }
         }
         bl.remove(item);
-        b = Arrays.copyOf(b, b.length - 1);
-        return bl.toArray(b);
+        return bl.toArray(new Book[bl.size()]);
     }
 }

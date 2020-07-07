@@ -1,5 +1,8 @@
 package at.fasy.studying.myLibrary;
 
+
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InputOutput {
@@ -22,6 +25,8 @@ public class InputOutput {
         System.out.print("3...add Book | ");
         System.out.print("4...delete Book | ");
         System.out.print("5...print Table | ");
+        System.out.print("6...save to File | ");
+        System.out.print("7...load from File | ");
         System.out.print("0...exit");
         System.out.println();
         System.out.print("Your choice: ");
@@ -140,5 +145,43 @@ public class InputOutput {
     public static String readString(){
         Scanner in = new Scanner(System.in);
         return in.nextLine();
+    }
+
+    public static void saveToFile(Book[] b) throws IOException {
+        FileWriter writer = new FileWriter("./books.txt");
+        for (Book i : b) {
+            writer.write(i + "\r"+ "");
+        }
+        writer.close();
+    }
+
+    public static Book[] loadFromFile() throws IOException {
+        FileReader fileReader = new FileReader("./books.txt");
+
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        ArrayList<Book> lines = new ArrayList<>();
+        String line;
+
+        while ((line = bufferedReader.readLine()) != null){
+//            System.out.println(line);
+            String[] lineArray = line.split("#");
+//            for (String a : lineArray){
+//                System.out.println(a);
+//            }
+            String title = lineArray[0];
+            String author = lineArray[1];
+            String isbn = lineArray[2];
+            boolean availability = true;
+            int libNr = Integer.parseInt(lineArray[3]);
+            if (lineArray[4].equals("false")){
+                availability = false;
+            }
+
+            int stock = Integer.parseInt(lineArray[5]);
+            lines.add(new Book(title, author, isbn, libNr, availability, stock));
+
+        }
+        bufferedReader.close();
+        return lines.toArray(new Book[lines.size()]);
     }
 }
